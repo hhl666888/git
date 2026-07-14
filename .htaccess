@@ -1,0 +1,28 @@
+# ============================================================
+# .htaccess — Apache 伪静态规则（宝塔面板默认支持）
+# ============================================================
+# 作用：URL 美化、隐藏 .php 后缀、禁止访问敏感文件
+# 注意：Nginx 环境下此文件不生效，需在宝塔网站设置中配置伪静态
+# ============================================================
+
+# 开启 URL 重写
+RewriteEngine On
+
+# 隐藏 .php 后缀（访问 /notes 自动指向 /notes.php）
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.php [L]
+
+# 默认首页
+DirectoryIndex index.php
+
+# 禁止访问敏感文件
+<FilesMatch "(^\.|config\.php|init\.sql)">
+    Require all denied
+</FilesMatch>
+
+# 防止目录浏览
+Options -Indexes
+
+# 字符集
+AddDefaultCharset UTF-8
