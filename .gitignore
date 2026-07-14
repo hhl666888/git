@@ -10,3 +10,8 @@ Desktop.ini
 # 临时文件
 *.log
 *.tmp
+
+# 敏感配置文件（包含数据库密码、服务器路径等）
+.env
+config.php
+.user.ini
